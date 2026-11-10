@@ -1,0 +1,1524 @@
+/* ==========================================================================
+   AO BÀ OM - VẺ ĐẸP DI SẢN XỨ TRÀ VINH
+   Design Philosophy: Modern Editorial & Contemporary Heritage Architecture
+   Pure CSS3 - No Frameworks - No Icons - Sharp Editorial Elegance
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&display=swap');
+
+/* --- DESIGN TOKENS & SYSTEM VARIABLES --- */
+:root {
+  /* Brand Color Palette */
+  --moss-dark: #344A36;     /* Xanh rêu đậm chủ đạo */
+  --moss-light: #647B52;    /* Xanh lá tự nhiên */
+  --sand-beige: #E9DFC9;    /* Be cát thanh lịch */
+  --sand-light: #F8F6EF;    /* Trắng ngà tự nhiên */
+  --wood-brown: #70563D;    /* Nâu gỗ cổ thụ */
+  --gold-accent: #C5A66A;   /* Vàng nhạt hoàng kim */
+  
+  /* Text & Structural Colors */
+  --text-main: #1D261E;      /* Màu chữ chính than trầm */
+  --text-muted: #536154;     /* Màu chữ thứ cấp nhẹ nhàng */
+  --text-light: #F8F6EF;     /* Màu chữ sáng trên nền tối */
+  --line-subtle: rgba(52, 74, 54, 0.12); /* Đường kẻ phân cách */
+  --line-gold: rgba(197, 166, 106, 0.35); /* Đường chỉ vàng */
+  --dark-overlay: rgba(29, 38, 30, 0.65); /* Lớp phủ ảnh */
+
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Layout Spacing */
+  --container-max: 1280px;
+  --container-wide: 1440px;
+  --section-pad-y: 110px;
+  --section-pad-sm: 70px;
+  --grid-gap: 40px;
+
+  /* Transitions */
+  --trans-fast: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --trans-smooth: 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- RESET & GLOBAL SETTINGS --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 !important; /* STRICT: Sharp architectural corners */
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: var(--sand-light);
+  color: var(--text-main);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--text-main);
+  background-color: var(--sand-light);
+  overflow-x: hidden;
+}
+
+/* Images & Media */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform var(--trans-smooth), filter var(--trans-smooth);
+}
+
+/* Links & Buttons */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--trans-fast), border-color var(--trans-fast);
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* Layout Containers */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.container-wide {
+  width: 100%;
+  max-width: var(--container-wide);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.container-fluid {
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* --- TYPOGRAPHY UTILITIES --- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--moss-dark);
+  letter-spacing: -0.01em;
+}
+
+.hero-title {
+  font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.section-title {
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.section-subtitle {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--wood-brown);
+  font-family: var(--font-serif);
+  font-style: italic;
+  margin-bottom: 24px;
+}
+
+/* Editorial Label (No icons allowed) */
+.editorial-tag {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--moss-light);
+  margin-bottom: 16px;
+  position: relative;
+  padding-left: 30px;
+}
+
+.editorial-tag::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 20px;
+  height: 1.5px;
+  background-color: var(--gold-accent);
+  transform: translateY(-50%);
+}
+
+.editorial-tag.light {
+  color: var(--gold-accent);
+}
+.editorial-tag.light::before {
+  background-color: var(--sand-beige);
+}
+
+/* Pull Quotes */
+.pull-quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 2.2vw, 1.85rem);
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--moss-dark);
+  border-left: 3px solid var(--gold-accent);
+  padding-left: 28px;
+  margin: 40px 0;
+}
+
+/* --- BUTTONS & EDITORIAL CTA --- */
+.btn-editorial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 36px;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 1.5px solid var(--moss-dark);
+  background-color: var(--moss-dark);
+  color: var(--sand-light);
+  cursor: pointer;
+  transition: all var(--trans-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-editorial:hover {
+  background-color: transparent;
+  color: var(--moss-dark);
+  border-color: var(--moss-dark);
+}
+
+.btn-editorial-light {
+  background-color: var(--sand-light);
+  color: var(--moss-dark);
+  border-color: var(--sand-light);
+}
+
+.btn-editorial-light:hover {
+  background-color: transparent;
+  color: var(--sand-light);
+  border-color: var(--sand-light);
+}
+
+.btn-editorial-gold {
+  background-color: var(--gold-accent);
+  color: var(--text-main);
+  border-color: var(--gold-accent);
+}
+
+.btn-editorial-gold:hover {
+  background-color: transparent;
+  color: var(--gold-accent);
+  border-color: var(--gold-accent);
+}
+
+/* Secondary Text Button */
+.link-editorial {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--moss-dark);
+  padding-bottom: 4px;
+  position: relative;
+}
+
+.link-editorial::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background-color: var(--gold-accent);
+  transition: transform var(--trans-fast);
+  transform-origin: left;
+}
+
+.link-editorial:hover::after {
+  transform: scaleX(0.4);
+}
+
+/* ==========================================================================
+   HEADER & NAVIGATION
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(248, 246, 239, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line-subtle);
+  transition: all var(--trans-fast);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 84px;
+}
+
+/* Editorial Brand Logo */
+.brand-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--moss-dark);
+  line-height: 1;
+}
+
+.brand-sub {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--wood-brown);
+  margin-top: 4px;
+}
+
+/* Nav Menu */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.nav-link {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--moss-dark);
+  padding: 8px 0;
+  position: relative;
+  transition: color var(--trans-fast);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--gold-accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--trans-smooth);
+}
+
+.nav-link:hover {
+  color: var(--wood-brown);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.nav-link.active {
+  color: var(--moss-dark);
+  font-weight: 700;
+}
+
+.nav-link.active::after {
+  transform: scaleX(1);
+  background-color: var(--moss-dark);
+}
+
+/* Mobile Nav Toggle via Pure CSS Checkbox (Strictly no icons) */
+.nav-toggle-input {
+  display: none;
+}
+
+.nav-toggle-label {
+  display: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border: 1px solid var(--moss-dark);
+  color: var(--moss-dark);
+}
+
+/* ==========================================================================
+   HERO SECTIONS
+   ========================================================================== */
+.hero-editorial {
+  position: relative;
+  min-height: 720px;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 90px;
+  padding-top: 140px;
+  background-color: var(--moss-dark);
+  overflow: hidden;
+}
+
+.hero-editorial-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.68) contrast(1.08);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(29, 38, 30, 0.45) 0%,
+    rgba(29, 38, 30, 0.75) 70%,
+    rgba(29, 38, 30, 0.95) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: var(--sand-light);
+  max-width: 920px;
+}
+
+.hero-content h1 {
+  color: var(--sand-light);
+  margin-bottom: 12px;
+}
+
+.hero-tagline {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+  font-weight: 400;
+  color: var(--gold-accent);
+  letter-spacing: 0.04em;
+  margin-bottom: 24px;
+}
+
+.hero-quote {
+  font-size: 1.15rem;
+  font-style: italic;
+  font-family: var(--font-serif);
+  color: var(--sand-beige);
+  max-width: 680px;
+  line-height: 1.7;
+  margin-bottom: 36px;
+  padding-left: 20px;
+  border-left: 2px solid var(--gold-accent);
+}
+
+/* Inner Page Hero (Editorial Split or Compact Header) */
+.page-hero {
+  position: relative;
+  background-color: var(--moss-dark);
+  color: var(--sand-light);
+  padding: 110px 0 80px;
+  border-bottom: 1px solid var(--line-subtle);
+  overflow: hidden;
+}
+
+.page-hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--grid-gap);
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.page-hero h1 {
+  color: var(--sand-light);
+  font-size: clamp(2.4rem, 4.8vw, 4rem);
+  margin-bottom: 16px;
+}
+
+.page-hero p {
+  color: var(--sand-beige);
+  font-size: 1.1rem;
+  line-height: 1.75;
+  max-width: 640px;
+}
+
+.page-hero-image {
+  height: 420px;
+  width: 100%;
+  object-fit: cover;
+  border-left: 4px solid var(--gold-accent);
+}
+
+/* ==========================================================================
+   EDITORIAL SECTION LAYOUTS
+   ========================================================================== */
+.section-pad {
+  padding-top: var(--section-pad-y);
+  padding-bottom: var(--section-pad-y);
+}
+
+.section-pad-sm {
+  padding-top: var(--section-pad-sm);
+  padding-bottom: var(--section-pad-sm);
+}
+
+.bg-sand-light {
+  background-color: var(--sand-light);
+}
+
+.bg-sand-beige {
+  background-color: var(--sand-beige);
+}
+
+.bg-moss-dark {
+  background-color: var(--moss-dark);
+  color: var(--sand-light);
+}
+.bg-moss-dark h2,
+.bg-moss-dark h3,
+.bg-moss-dark h4 {
+  color: var(--sand-light);
+}
+.bg-moss-dark p {
+  color: rgba(248, 246, 239, 0.88);
+}
+
+.bg-charcoal {
+  background-color: var(--text-main);
+  color: var(--sand-light);
+}
+.bg-charcoal h2,
+.bg-charcoal h3,
+.bg-charcoal h4 {
+  color: var(--sand-light);
+}
+.bg-charcoal p {
+  color: rgba(248, 246, 239, 0.85);
+}
+
+/* Editorial Split 7:5 or 5:7 */
+.grid-split-7-5 {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.grid-split-5-7 {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.grid-split-6-6 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.grid-asymmetric-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 36px;
+}
+
+/* Image Frames (Strictly sharp, full bleed or geometrical) */
+.editorial-frame {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--moss-dark);
+}
+
+.editorial-frame img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.editorial-frame:hover img {
+  transform: scale(1.03);
+}
+
+.frame-caption {
+  margin-top: 12px;
+  font-size: 0.78rem;
+  font-family: var(--font-sans);
+  color: var(--wood-brown);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-top: 1px solid var(--line-subtle);
+  padding-top: 8px;
+}
+
+/* Editorial Index / Stat Numbers */
+.editorial-stat-box {
+  border-top: 2px solid var(--gold-accent);
+  padding-top: 20px;
+  margin-top: 36px;
+  display: flex;
+  gap: 36px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  font-family: var(--font-serif);
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--moss-dark);
+}
+.bg-moss-dark .stat-number {
+  color: var(--gold-accent);
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--wood-brown);
+  margin-top: 6px;
+}
+.bg-moss-dark .stat-label {
+  color: var(--sand-beige);
+}
+
+/* Three Pillars of Heritage (Home & Overview) */
+.heritage-pillar-item {
+  display: flex;
+  flex-direction: column;
+  border-top: 2px solid var(--moss-dark);
+  padding-top: 24px;
+}
+
+.pillar-number {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-style: italic;
+  color: var(--gold-accent);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.heritage-pillar-item h3 {
+  font-size: 1.55rem;
+  margin-bottom: 14px;
+}
+
+.heritage-pillar-item p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+
+.pillar-image-wrap {
+  height: 280px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.pillar-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Asymmetric Editorial Gallery */
+.gallery-editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.gallery-col-6 {
+  grid-column: span 6;
+}
+
+.gallery-col-4 {
+  grid-column: span 4;
+}
+
+.gallery-col-8 {
+  grid-column: span 8;
+}
+
+.gallery-col-12 {
+  grid-column: span 12;
+}
+
+.gallery-photo-card {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  min-height: 340px;
+  background-color: var(--moss-dark);
+}
+
+.gallery-photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-photo-card:hover img {
+  transform: scale(1.04);
+}
+
+.gallery-overlay-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px;
+  background: linear-gradient(180deg, transparent 0%, rgba(29, 38, 30, 0.9) 100%);
+  color: var(--sand-light);
+  transform: translateY(10px);
+  transition: transform var(--trans-smooth);
+}
+
+.gallery-photo-card:hover .gallery-overlay-text {
+  transform: translateY(0);
+}
+
+.gallery-overlay-text h4 {
+  color: var(--sand-light);
+  font-size: 1.35rem;
+  margin-bottom: 6px;
+}
+
+.gallery-overlay-text p {
+  font-size: 0.85rem;
+  color: var(--sand-beige);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   EDITORIAL TIMELINE (Lịch sử)
+   ========================================================================== */
+.timeline-editorial {
+  position: relative;
+  max-width: 980px;
+  margin: 40px auto 0;
+  border-left: 2px solid var(--moss-light);
+  padding-left: 48px;
+}
+
+.timeline-entry {
+  position: relative;
+  margin-bottom: 60px;
+}
+
+.timeline-entry:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-node {
+  position: absolute;
+  left: -54px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  background-color: var(--gold-accent);
+  border: 3px solid var(--sand-light);
+  box-shadow: 0 0 0 2px var(--moss-dark);
+}
+
+.timeline-year {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--moss-dark);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.timeline-title {
+  font-size: 1.35rem;
+  color: var(--wood-brown);
+  margin-bottom: 12px;
+}
+
+.timeline-desc {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+
+/* ==========================================================================
+   STORYTELLING CHAPTERS (Truyền thuyết)
+   ========================================================================== */
+.story-chapter {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 60px 0;
+  border-bottom: 1px solid var(--line-subtle);
+}
+
+.story-chapter.reversed {
+  direction: rtl;
+}
+
+.story-chapter.reversed .story-text-col {
+  direction: ltr;
+}
+
+.story-chapter.reversed .story-image-col {
+  direction: ltr;
+}
+
+.story-badge {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--gold-accent);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.story-text-col h3 {
+  font-size: 2rem;
+  margin-bottom: 18px;
+}
+
+.story-text-col p {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.story-image-col {
+  height: 440px;
+  overflow: hidden;
+  position: relative;
+}
+
+.story-image-col img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Story Academic Note Block */
+.editorial-note-box {
+  background-color: #ECE5D5;
+  border-left: 4px solid var(--wood-brown);
+  padding: 36px 42px;
+  margin: 50px 0;
+}
+
+.editorial-note-box h4 {
+  font-size: 1.25rem;
+  color: var(--wood-brown);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.editorial-note-box p {
+  font-size: 0.98rem;
+  color: var(--text-main);
+  line-height: 1.8;
+}
+
+/* ==========================================================================
+   CULTURE MAGAZINE SPREAD (Văn hóa)
+   ========================================================================== */
+.culture-feature-card {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  background-color: var(--sand-light);
+  border: 1px solid var(--line-subtle);
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+
+.culture-feature-card.dark-mode {
+  background-color: var(--moss-dark);
+  color: var(--sand-light);
+  border-color: rgba(248, 246, 239, 0.1);
+}
+
+.culture-feature-card.dark-mode h3 {
+  color: var(--sand-light);
+}
+
+.culture-feature-card.dark-mode p {
+  color: rgba(248, 246, 239, 0.85);
+}
+
+.culture-img-wrap {
+  height: 480px;
+  overflow: hidden;
+}
+
+.culture-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.culture-content-wrap {
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.culture-content-wrap h3 {
+  font-size: 2.1rem;
+  margin-bottom: 18px;
+}
+
+.culture-content-wrap p {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+/* Grid of Cultural Elements */
+.culture-tri-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+}
+
+.culture-tri-item {
+  border-top: 2px solid var(--gold-accent);
+  padding-top: 24px;
+}
+
+.culture-tri-item h4 {
+  font-size: 1.35rem;
+  margin-bottom: 12px;
+}
+
+.culture-tri-item p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   TRAVEL GUIDE & GASTRONOMY (Du lịch)
+   ========================================================================== */
+.travel-experience-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+.travel-exp-card {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px solid var(--moss-dark);
+  padding-bottom: 24px;
+}
+
+.exp-img-wrap {
+  height: 260px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.exp-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.travel-exp-card h4 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.travel-exp-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* Travel Timing Split */
+.timing-editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.timing-card {
+  background-color: #EFE9DB;
+  padding: 36px 30px;
+  border-left: 3px solid var(--moss-dark);
+}
+
+.timing-time {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--moss-dark);
+  margin-bottom: 10px;
+}
+
+.timing-card h4 {
+  font-size: 1.15rem;
+  margin-bottom: 12px;
+}
+
+.timing-card p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* Travel Itinerary Route */
+.itinerary-track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  position: relative;
+  margin: 40px 0;
+}
+
+.itinerary-step {
+  position: relative;
+  border-top: 3px solid var(--moss-dark);
+  padding-top: 24px;
+}
+
+.step-marker {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--gold-accent);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.itinerary-step h4 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.itinerary-step p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* Culinary Editorial Magazine Spread */
+.food-magazine-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 32px;
+}
+
+.food-item-lead {
+  grid-column: span 7;
+  display: flex;
+  flex-direction: column;
+}
+
+.food-item-secondary {
+  grid-column: span 5;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.food-card {
+  background-color: var(--sand-light);
+  border: 1px solid var(--line-subtle);
+  overflow: hidden;
+}
+
+.food-card-img {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+}
+
+.food-card-lead-img {
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+}
+
+.food-card-body {
+  padding: 28px 24px;
+}
+
+.food-card h4 {
+  font-size: 1.35rem;
+  margin-bottom: 8px;
+}
+
+.food-card p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+.food-tag-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--wood-brown);
+  margin-bottom: 10px;
+}
+
+/* Responsible Tourism Code of Ethics */
+.ethics-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+
+.ethics-item {
+  border-top: 2px solid var(--moss-dark);
+  padding-top: 20px;
+}
+
+.ethics-number {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--gold-accent);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.ethics-item h4 {
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+}
+
+.ethics-item p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   MAP & GEOGRAPHY SECTION (Vị trí)
+   ========================================================================== */
+.map-embed-container {
+  width: 100%;
+  height: 520px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line-subtle);
+  background-color: var(--sand-beige);
+}
+
+.map-embed-container iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: saturate(0.9) contrast(1.05);
+}
+
+.map-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 36px;
+}
+
+.map-info-block {
+  border-top: 2px solid var(--moss-dark);
+  padding-top: 20px;
+}
+
+.map-info-block h4 {
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+}
+
+.map-info-block p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* Surrounding Cultural Triangle */
+.heritage-triangle-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+}
+
+.triangle-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.triangle-img-wrap {
+  height: 290px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.triangle-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.triangle-card h4 {
+  font-size: 1.45rem;
+  margin-bottom: 10px;
+}
+
+.triangle-card p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   CONCLUSION & CALLOUT BANNER
+   ========================================================================== */
+.editorial-callout {
+  padding: 100px 0;
+  background-color: var(--moss-dark);
+  color: var(--sand-light);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.editorial-callout::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--gold-accent);
+}
+
+.callout-inner {
+  max-width: 860px;
+}
+
+.callout-inner h2 {
+  color: var(--sand-light);
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  margin-bottom: 24px;
+  line-height: 1.25;
+}
+
+.callout-inner p {
+  font-size: 1.2rem;
+  font-style: italic;
+  font-family: var(--font-serif);
+  color: var(--sand-beige);
+  line-height: 1.75;
+  margin-bottom: 36px;
+}
+
+/* ==========================================================================
+   EDITORIAL FOOTER
+   ========================================================================== */
+.site-footer {
+  background-color: #1A241B;
+  color: var(--sand-light);
+  padding-top: 100px;
+  padding-bottom: 40px;
+  border-top: 1px solid rgba(248, 246, 239, 0.08);
+}
+
+.footer-top-brand {
+  margin-bottom: 70px;
+  border-bottom: 1px solid rgba(248, 246, 239, 0.12);
+  padding-bottom: 50px;
+}
+
+.footer-big-title {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 7.5vw, 6.5rem);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--sand-light);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.footer-tagline-text {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-style: italic;
+  color: var(--gold-accent);
+  max-width: 760px;
+}
+
+.footer-main-grid {
+  display: grid;
+  grid-template-columns: 5fr 3fr 4fr;
+  gap: 56px;
+  margin-bottom: 70px;
+}
+
+.footer-col h4 {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-accent);
+  margin-bottom: 24px;
+}
+
+.footer-about-text {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: rgba(248, 246, 239, 0.75);
+  max-width: 440px;
+}
+
+.footer-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer-nav-link {
+  font-size: 0.9rem;
+  color: rgba(248, 246, 239, 0.8);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition: color var(--trans-fast), transform var(--trans-fast);
+  display: inline-block;
+}
+
+.footer-nav-link:hover {
+  color: var(--gold-accent);
+  transform: translateX(4px);
+}
+
+.footer-pledge-box {
+  background-color: rgba(52, 74, 54, 0.35);
+  border-left: 3px solid var(--gold-accent);
+  padding: 24px;
+}
+
+.footer-pledge-box p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgba(248, 246, 239, 0.85);
+  font-style: italic;
+}
+
+.footer-bottom-bar {
+  border-top: 1px solid rgba(248, 246, 239, 0.08);
+  padding-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: rgba(248, 246, 239, 0.5);
+  letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (MEDIA QUERIES)
+   Strictly no horizontal scroll, clean editorial wrap
+   ========================================================================== */
+@media (max-width: 1024px) {
+  :root {
+    --section-pad-y: 80px;
+    --grid-gap: 32px;
+  }
+
+  .grid-split-7-5,
+  .grid-split-5-7,
+  .grid-split-6-6 {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .page-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-hero-image {
+    height: 320px;
+    border-left: none;
+    border-top: 4px solid var(--gold-accent);
+  }
+
+  .grid-asymmetric-3,
+  .culture-tri-grid,
+  .heritage-triangle-grid,
+  .map-info-grid,
+  .timing-editorial-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .travel-experience-grid,
+  .itinerary-track {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .ethics-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  .food-magazine-grid {
+    grid-template-columns: 1fr;
+  }
+  .food-item-lead,
+  .food-item-secondary {
+    grid-column: span 1;
+  }
+
+  .story-chapter,
+  .story-chapter.reversed {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    direction: ltr;
+  }
+
+  .culture-feature-card {
+    grid-template-columns: 1fr;
+  }
+  .culture-img-wrap {
+    height: 360px;
+  }
+
+  .footer-main-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-pad-y: 60px;
+    --section-pad-sm: 40px;
+  }
+
+  .header-container {
+    height: 72px;
+  }
+
+  .nav-toggle-label {
+    display: block;
+  }
+
+  /* Mobile Nav Dropdown via Pure CSS */
+  .nav-menu {
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background-color: var(--sand-light);
+    border-bottom: 2px solid var(--moss-dark);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 32px;
+    gap: 16px;
+    display: none;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+  }
+
+  .nav-toggle-input:checked ~ .nav-menu {
+    display: flex;
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line-subtle);
+  }
+
+  .hero-editorial {
+    min-height: 580px;
+    padding-bottom: 60px;
+    padding-top: 100px;
+  }
+
+  .gallery-editorial-grid {
+    grid-template-columns: 1fr;
+  }
+  .gallery-col-6,
+  .gallery-col-4,
+  .gallery-col-8,
+  .gallery-col-12 {
+    grid-column: span 1;
+  }
+
+  .travel-experience-grid,
+  .itinerary-track,
+  .ethics-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .timeline-editorial {
+    padding-left: 28px;
+  }
+  .timeline-node {
+    left: -34px;
+  }
+
+  .footer-bottom-bar {
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+    align-items: flex-start;
+  }
+}
